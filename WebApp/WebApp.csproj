@@ -175,6 +175,8 @@
     <Content Include="admin\js\unicorn.wizard.js" />
     <Content Include="admin\Main.aspx" />
     <Content Include="admin\SectionList.aspx" />
+    <Content Include="admin\TopiclistAdmin.aspx" />
+    <Content Include="admin\UserList.aspx" />
     <Content Include="admin\ZoneList.aspx" />
     <Content Include="bin\bbs.BLL.dll" />
     <Content Include="bin\bbs.BLL.pdb" />
@@ -725,7 +727,6 @@
     <Content Include="js\uploadPreview.min.js" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
-    <Content Include="admin\login.jsp" />
     <Content Include="admin\main.jsp" />
     <Content Include="admin\section.jsp" />
     <Content Include="admin\topic.jsp" />
@@ -903,6 +904,8 @@
     <Content Include="topic\ReplyDelete.ashx" />
     <Content Include="topic\ReplySave.ashx" />
     <Content Include="topic\images\emotions\Thumbs.db" />
+    <Content Include="admin\SaveZone.ashx" />
+    <Content Include="admin\ZoneDelete.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -929,12 +932,32 @@
     <Compile Include="admin\Main.aspx.designer.cs">
       <DependentUpon>Main.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\SaveZone.ashx.cs">
+      <DependentUpon>SaveZone.ashx</DependentUpon>
+    </Compile>
     <Compile Include="admin\SectionList.aspx.cs">
       <DependentUpon>SectionList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="admin\SectionList.aspx.designer.cs">
       <DependentUpon>SectionList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\TopiclistAdmin.aspx.cs">
+      <DependentUpon>TopiclistAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\TopiclistAdmin.aspx.designer.cs">
+      <DependentUpon>TopiclistAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\UserList.aspx.cs">
+      <DependentUpon>UserList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\UserList.aspx.designer.cs">
+      <DependentUpon>UserList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\ZoneDelete.ashx.cs">
+      <DependentUpon>ZoneDelete.ashx</DependentUpon>
     </Compile>
     <Compile Include="admin\ZoneList.aspx.cs">
       <DependentUpon>ZoneList.aspx</DependentUpon>
