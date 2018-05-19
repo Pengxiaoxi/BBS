@@ -16,6 +16,9 @@ namespace bbs.BLL
 
         private readonly bbs.DAL.SectionDao sectionDao = new bbs.DAL.SectionDao();
         private readonly SectionService sectionService = new SectionService();
+
+        public int pageCount = 5;
+
         public ZoneService()
 		{}
         #region  BasicMethod
@@ -36,6 +39,18 @@ namespace bbs.BLL
             return zoneList;
         }
 
+
+        //查找所有zone
+        public List<Zone> FindAllZone(int pageNumber)
+        {
+            int pageCount = 5;
+
+            DataSet ds = this.GetListByPage("","id asc",(pageNumber-1)*pageCount+1,pageNumber*pageCount);
+
+            List<Zone> zoneList = this.DataTableToList(ds.Tables[0]);
+
+            return zoneList;
+        }
 
 
         /// <summary>

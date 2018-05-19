@@ -10,6 +10,6 @@
 namespace WebApp.admin {
     
     
-    public partial class Zone {
+    public partial class ZoneList {
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Zone.aspx.cs" Inherits="WebApp.admin.Zone" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ZoneList.aspx.cs" Inherits="WebApp.admin.ZoneList" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -155,7 +155,7 @@ function resetValue() {
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${zoneList }" var="zone">
+								<%--<c:forEach items="${zoneList }" var="zone">
 									<tr>
 										<td><input type="checkbox" /></td>
 										<td style="text-align: center;">${zone.id }</td>
@@ -166,13 +166,32 @@ function resetValue() {
 											</button>&nbsp;&nbsp;<button class="btn btn-danger" type="button" onclick="javascript:zoneDelete(${zone.id})">删除</button>
 										</td>
 									</tr>
-								</c:forEach>
+								</c:forEach>--%>
+
+                                <%
+                                    foreach (bbs.Model.Zone zone in zoneList)
+                                    {%>
+                                     <tr>
+										<td><input type="checkbox" /></td>
+										<td style="text-align: center;"><%=zone.id %></td>
+										<td style="text-align: center;"><%=zone.name %></td>
+										<td style="text-align: center;"><%=zone.description %></td>
+										<td style="text-align: center;">
+											<button class="btn btn-info" type="button" data-backdrop="static" data-toggle="modal" data-target="#dlg" onclick="return modifyZone(<%=zone.id %>,'<%=zone.name %>','<%=zone.description %>')">修改
+											</button>&nbsp;&nbsp;<button class="btn btn-danger" type="button" onclick="javascript:zoneDelete(<%=zone.id %>)">删除</button>
+										</td>
+									</tr>
+
+                                    <%}
+                                %>
+
 							</tbody>
 						</table>
 					</div>
 				</div>
 				<div class="pagination alternate">
-					<ul class="clearfix">${pageCode }
+					<ul class="clearfix">
+                        <%=pageCode %>
 					</ul>
 				</div>
 

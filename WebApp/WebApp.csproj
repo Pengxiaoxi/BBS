@@ -175,7 +175,7 @@
     <Content Include="admin\js\unicorn.wizard.js" />
     <Content Include="admin\Main.aspx" />
     <Content Include="admin\SectionList.aspx" />
-    <Content Include="admin\Zone.aspx" />
+    <Content Include="admin\ZoneList.aspx" />
     <Content Include="bin\bbs.BLL.dll" />
     <Content Include="bin\bbs.BLL.pdb" />
     <Content Include="bin\bbs.DAL.dll" />
@@ -936,12 +936,12 @@
     <Compile Include="admin\SectionList.aspx.designer.cs">
       <DependentUpon>SectionList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\Zone.aspx.cs">
-      <DependentUpon>Zone.aspx</DependentUpon>
+    <Compile Include="admin\ZoneList.aspx.cs">
+      <DependentUpon>ZoneList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\Zone.aspx.designer.cs">
-      <DependentUpon>Zone.aspx</DependentUpon>
+    <Compile Include="admin\ZoneList.aspx.designer.cs">
+      <DependentUpon>ZoneList.aspx</DependentUpon>
     </Compile>
     <Compile Include="common\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

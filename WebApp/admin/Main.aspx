@@ -48,7 +48,7 @@ $(function(){
 
 	<div id="sidebar">
 		<ul>
-			<li id="zoneLi"><a href="/admin/Zone.aspx"><i class="icon icon-home"></i> <span>大板块管理</span></a></li>
+			<li id="zoneLi"><a href="/admin/ZoneList.aspx"><i class="icon icon-home"></i> <span>大板块管理</span></a></li>
 			<li id="sectionLi"><a href="/admin/SectionList.aspx"><i class="icon icon-home"></i> <span>小板块管理</span></a></li>
 			<li id="topicLi"><a href="/admin/TopiclistAdmin.aspx"><i class="icon icon-home"></i> <span>帖子管理</span></a></li>
 			<!-- <li><a href="#"><i class="icon icon-home"></i> <span>回复管理</span></a></li> -->
