@@ -224,6 +224,7 @@ namespace bbs.DAL
 				return false;
 			}
 		}
+
 		/// <summary>
 		/// 批量删除数据
 		/// </summary>
@@ -244,10 +245,31 @@ namespace bbs.DAL
 		}
 
 
-		/// <summary>
-		/// 得到一个对象实体
+        /// <summary>
+		/// 通过外键用户Id批量删除数据
 		/// </summary>
-		public bbs.Model.Reply GetModel(int id)
+		public bool DeleteListByUid(string idlist)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("delete from t_reply ");
+            strSql.Append(" where t_u_id in (" + idlist + ")  ");
+            int rows = DbHelperSQL.ExecuteSql(strSql.ToString());
+            if (rows > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+
+        /// <summary>
+        /// 得到一个对象实体
+        /// </summary>
+        public bbs.Model.Reply GetModel(int id)
 		{
 			
 			StringBuilder strSql=new StringBuilder();

@@ -226,6 +226,25 @@ namespace bbs.DAL
 			}
 		}
 
+        /// <summary>
+		/// 通过外键用户Id批量删除数据
+		/// </summary>
+		public bool DeleteListByUid(string idlist)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("delete from t_topic ");
+            strSql.Append(" where t_u_id in (" + idlist + ")  ");
+            int rows = DbHelperSQL.ExecuteSql(strSql.ToString());
+            if (rows > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
         /// <summary>
         /// 得到一个对象实体

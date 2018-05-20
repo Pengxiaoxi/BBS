@@ -49,8 +49,9 @@
             $.post("/admin/UserDelete.ashx", { userId: userId },
                     function (result) {
                         //var result = eval('(' + result + ')');
-                        alert(result);
+                        //alert(result);
                         if (result) {
+                            alert("删除成功！");
                             window.location.reload(true);
                         }
                         else
@@ -74,14 +75,22 @@
             strIds.push(selectedSpan[i].innerHTML);
         }
         var ids = strIds.join(",");
+        //alert(ids);
+        
         if (confirm("用户所发的帖子也将被删除，您确定要删除这" + selectedSpan.length + "条数据吗？")) {
-            $.post("User_deleteUsers.action", { ids: ids }, function (result) {
-                var result = eval('(' + result + ')');
-                if (result.info) {
-                    alert(result.info);
+            $.post("/admin/UserDelete.ashx  ", { ids: ids }, function (result) {
+                
+                //var result = eval('(' + result + ')');
+                if (result) {
+                    //alert(result);
+                    alert("删除成功！");
                     location.reload(true);
                 }
-            });
+                else
+                {
+                    alert("删除失败");
+                }
+            },"text");
         } else {
             return;
         }

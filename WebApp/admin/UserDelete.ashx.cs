@@ -16,31 +16,44 @@ namespace WebApp.admin
         {
             context.Response.ContentType = "text/plain";
 
-            int userId = Int32.Parse(context.Request["userId"]);
-
-            //通过用户Id删除用户的所有回帖
             ReplyService replyService = new ReplyService();
-            bool b = replyService.DeleteByUid(userId);
-
-            //通过用户Id删除用户的所有发帖
             TopicService topicService = new TopicService();
-            bool b1 = topicService.DeleteByUid(userId);
-
-            //通过用户Id删除用户信息
             UserService userService = new UserService();
-            bool b2 = userService.Delete(userId);
 
-            if (b == true && b1 == true && b2 == true)
+            if (context.Request["userId"] != null)   //删除单个用户信息
             {
-                b2 = true;
-            }
-            else
-            {
-                b2 = false;
-            }
+                int userId = Int32.Parse(context.Request["userId"]);
 
-            context.Response.Write(b2);
-            context.Response.End();
+                //通过用户Id删除用户的所有回帖
+                bool b = replyService.DeleteByUid(userId);
+
+                //通过用户Id删除用户的所有发帖 
+                bool b1 = topicService.DeleteByUid(userId);
+
+                //通过用户Id删除用户信息
+                bool b2 = userService.Delete(userId);
+
+                context.Response.Write(b2);
+                context.Response.End();
+
+            }
+            else //批量删除用户信息
+            {
+                string idList = context.Request["ids"];
+
+                //通过外键用户Id批量删除回帖信息
+                bool b = replyService.DeleteListByUid(idList);
+
+                // 通过用户Id批量删除用户的所有发帖
+                bool b1 = topicService.DeleteListByUid(idList);
+
+                //通过用户Id批量删除用户信息
+                bool b2 = userService.DeleteList(idList);
+
+                context.Response.Write(b2);
+                context.Response.End();
+
+            }
         }
 
         public bool IsReusable

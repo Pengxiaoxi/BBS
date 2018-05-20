@@ -178,10 +178,17 @@ namespace bbs.BLL
 			return dal.DeleteList(idlist );
 		}
 
-		/// <summary>
-		/// 得到一个对象实体
-		/// </summary>
-		public bbs.Model.Reply GetModel(int id)
+        //通过外键用户Id批量删除数据
+        public bool DeleteListByUid(string idlist)
+        {
+            return dal.DeleteListByUid(idlist);
+        }
+        
+
+        /// <summary>
+        /// 得到一个对象实体
+        /// </summary>
+        public bbs.Model.Reply GetModel(int id)
 		{
 			
 			return dal.GetModel(id);
