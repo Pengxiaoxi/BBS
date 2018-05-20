@@ -906,6 +906,9 @@
     <Content Include="topic\images\emotions\Thumbs.db" />
     <Content Include="admin\SaveZone.ashx" />
     <Content Include="admin\ZoneDelete.ashx" />
+    <Content Include="admin\UserSave.ashx" />
+    <Content Include="admin\UserDelete.ashx" />
+    <Content Include="admin\AdminLoginOut.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -918,6 +921,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin\AdminLoginOut.ashx.cs">
+      <DependentUpon>AdminLoginOut.ashx</DependentUpon>
+    </Compile>
     <Compile Include="admin\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -949,12 +955,18 @@
     <Compile Include="admin\TopiclistAdmin.aspx.designer.cs">
       <DependentUpon>TopiclistAdmin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\UserDelete.ashx.cs">
+      <DependentUpon>UserDelete.ashx</DependentUpon>
+    </Compile>
     <Compile Include="admin\UserList.aspx.cs">
       <DependentUpon>UserList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="admin\UserList.aspx.designer.cs">
       <DependentUpon>UserList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\UserSave.ashx.cs">
+      <DependentUpon>UserSave.ashx</DependentUpon>
     </Compile>
     <Compile Include="admin\ZoneDelete.ashx.cs">
       <DependentUpon>ZoneDelete.ashx</DependentUpon>

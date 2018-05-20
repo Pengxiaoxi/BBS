@@ -13,7 +13,9 @@ namespace bbs.BLL
 	{
 		private readonly bbs.DAL.UserDao dal=new bbs.DAL.UserDao();
 
-		public UserService()
+        public int pageCount = 5;
+
+        public UserService()
 		{}
         #region  BasicMethod
 
@@ -28,11 +30,23 @@ namespace bbs.BLL
         //    return userInfo;
         //}
 
+        //FindAllUser
+        public List<User> FindAllUser(int pageNumber)
+        {
+            DataSet ds = this.GetListByPage("", "id asc", (pageNumber-1)*pageCount+1, pageNumber*pageCount);
 
-		/// <summary>
-		/// 得到最大ID
-		/// </summary>
-		public int GetMaxId()
+            List<User> userList = this.DataTableToList(ds.Tables[0]);
+
+            return userList;
+        }
+
+
+
+
+        /// <summary>
+        /// 得到最大ID
+        /// </summary>
+        public int GetMaxId()
 		{
 			return dal.GetMaxId();
 		}

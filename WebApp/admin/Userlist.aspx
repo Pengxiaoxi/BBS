@@ -13,6 +13,7 @@
 <script type="text/javascript" src="/admin/js/jquery-1.11.1.js"></script>
 <script src="/admin/js/My97DatePicker/WdatePicker.js"></script>
 <script type="text/javascript">
+
     function modifyUser(id, nickName, trueName, password, sex, face, email, mobile) {
         $("#myModalLabel").html("修改用户");
         $("#id").val(id);
@@ -20,23 +21,48 @@
         $("#trueName").val(trueName);
         $("#password").val(password);
         $("#sex").val(sex);
+        //$("#face").attr("src", "${pageContext.request.contextPath}/" + face);
         $("#face").attr("src", "${pageContext.request.contextPath}/" + face);
         $("#email").val(email);
         $("#mobile").val(mobile);
     }
+
+    function saveUser() {
+        $.post("/admin/UserSave.ashx", $("#fm").serialize(), function (data) {
+            //alert($("#fm").serialize());
+            //alert(data);
+            if(data)
+            {
+                alert("用户信息修改成功！");
+                resetValue();
+                location.reload(true);
+            }
+            else
+            {
+                alert("用户信息修改失败！");
+            }
+        }, "text");
+    }
+
     function userDelete(userId) {
         if (confirm("用户所发的帖子也将被删除，确定要删除这条数据吗?")) {
-            $.post("User_delete.action", { userId: userId },
+            $.post("/admin/UserDelete.ashx", { userId: userId },
                     function (result) {
-                        var result = eval('(' + result + ')');
-                        if (result.info) {
-                            alert(result.info);
+                        //var result = eval('(' + result + ')');
+                        alert(result);
+                        if (result) {
                             window.location.reload(true);
                         }
-                    }
+                        else
+                        {
+                            alert("删除失败");
+                        }
+                    },"text"
                 );
         }
     }
+
+
     function deleteUsers() {
         var selectedSpan = $(".checked").parent().parent().next("td");
         if (selectedSpan.length == 0) {
@@ -97,7 +123,7 @@
 					<span>系统管理</span> <span class="label">3</span></a>
 				<ul>
 					<li><a href="#">修改密码</a></li>
-					<li><a href="#">安全退出</a></li>
+					<li><a href="/admin/AdminLoginOut.ashx">安全退出</a></li>
 					<li><a href="#">刷新系统缓存</a></li>
 				</ul></li>
 		</ul>
@@ -113,7 +139,7 @@
 
 	<div id="content">
 		<div id="content-header">
-			<h1>后台管理</h1>
+			<h1>用户管理</h1>
 			<!-- <div class="btn-group">
 				<a class="btn btn-large tip-bottom" title="Manage Files"><i
 					class="icon-file"></i></a> <a class="btn btn-large tip-bottom"
@@ -126,13 +152,15 @@
 		</div>
 		<div id="breadcrumb">
 			<a href="#" title="首页" class="tip-bottom">
-			<i class="icon-home"></i> 首页</a> <a href="" class="current"></a>
+			<i class="icon-home"></i> 首页</a> <a href="" class="current">用户</a>
 		</div>
 
 		<div class="container-fluid">
 		<div id="tooBar" style="padding: 10px 0px 0px 10px;">
 			<!-- <button class="btn btn-primary" type="button" data-backdrop="static" data-toggle="modal" data-target="#dlg" onclick="return openAddDlg()">添加小板块</button>&nbsp;&nbsp;&nbsp;&nbsp; -->
+
 			<a href="#" role="button" class="btn btn-danger" onclick="javascrip:deleteUsers()">批量删除</a>
+
 			<%-- <form action="User_list.action" method="post" class="form-search" style="display: inline;">
 	          &nbsp;小板块名称：
 			  <input name="s_user.name" value="${s_user.name }" type="text" class="input-medium search-query" placeholder="输入小板块名称..."/>
@@ -169,7 +197,7 @@
 									<th>编号</th>
 									<th>昵称</th>
 									<th>真实姓名</th>
-									<th>登录密码</th>
+									<%--<th>登录密码</th>--%>
 									<th>性别</th>
 									<th>头像</th>
 									<th>注册时间</th>
@@ -180,59 +208,58 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${userList }" var="user">
+                                <% 
+                                    foreach (bbs.Model.User user in userList) {%>
+
 									<tr>
 										<td><input type="checkbox" /></td>
-										<td style="text-align: center;vertical-align: middle;">${user.id }</td>
-										<td style="text-align: center;vertical-align: middle;">${user.nickName }</td>
-										<td style="text-align: center;vertical-align: middle;">${user.trueName }</td>
-										<td style="text-align: center;vertical-align: middle;">${user.password }</td>
-										<td style="text-align: center;vertical-align: middle;">${user.sex }</td>
+										<td style="text-align: center;vertical-align: middle;"><%=user.id%></td>
+										<td style="text-align: center;vertical-align: middle;"><%=user.nickname %></td>
+										<td style="text-align: center;vertical-align: middle;"><%=user.truename %></td>
+										<%--<td style="text-align: center;vertical-align: middle;"><%=user.password %></td>--%>
+										<td style="text-align: center;vertical-align: middle;"><%=user.sex %></td>
 										<td style="text-align: center;vertical-align: middle;">
-											<c:choose>
-													<c:when test="${(user.face==null||user.face=='')&&user.sex=='男'}">
-														<img alt="" src="${pageContext.request.contextPath}/images/user/user0.gif" style="width: 100px;height: 100px;">
-													</c:when>
-													<c:when test="${(user.face==null||user.face=='')&&user.sex=='女'}">
-														<img alt="" src="${pageContext.request.contextPath}/images/user/female.gif" style="width: 100px;height: 100px;">
-													</c:when>
-													<c:otherwise>
-														<img alt="" src="${pageContext.request.contextPath}/${user.face}" style="width: 100px;height: 100px;">
-													</c:otherwise>
-											</c:choose>
+											
+                                            <img alt="" src="<%=user.face %>" style="width: 80px; height: 80px;">
+
 										</td>
-										<td style="text-align: center;vertical-align: middle;">${user.regTime }</td>
-										<td style="text-align: center;vertical-align: middle;">${user.email }</td>
-										<td style="text-align: center;vertical-align: middle;">${user.mobile }</td>
+										<td style="text-align: center;vertical-align: middle;"><%=user.regtime %></td>
+										<td style="text-align: center;vertical-align: middle;"><%=user.email %></td>
+										<td style="text-align: center;vertical-align: middle;"><%=user.mobile %></td>
 										<td style="text-align: center;vertical-align: middle;width: 150px;">
-											<c:choose>
-					                  	  		<c:when test="${user.sectionList.size()==0&&user.type!=2 }">
-					                  	  			<font style="color: black;">普通用户</font>	
-					                  	  		</c:when>
-					                  	  		<c:when test="${user.sectionList.size()!=0&&user.type!=2 }">
-					                  	  			<font style="color: blue;">版主</font>
-					                  	  			【<c:forEach items="${user.sectionList }" var="section">
-					                  	  				${section.name }；
-					                  	  			</c:forEach>】
-					                  	  		</c:when>
-					                  	  		<c:otherwise>
-					                  	  			<font style="color: red;">管理员</font>
-					                  	  		</c:otherwise>
-					                  	  	</c:choose>
+											
+                                            <%
+                                                if (user.type == "1")
+                                                {%>
+                                                    <font style = "color: black;" >普通用户</ font >
+                                                <%}
+                                                else if (user.type == "2")
+                                                {%>
+                                                    <font style="color: blue;">版主</font>
+                                                <%}
+                                                else
+                                                {%>
+                                                    <font style="color: red;">管理员</font>
+                                                <%}
+                                            %>
+
 										</td>
 										<td style="text-align: center;vertical-align: middle;">
 											<button class="btn btn-info" type="button" data-backdrop="static" data-toggle="modal" data-target="#dlg" 
-											onclick="return modifyUser(${user.id},'${user.nickName }','${user.trueName }','${user.password }','${user.sex }','${user.face }','${user.email }','${user.mobile }')">修改</button>&nbsp;&nbsp;
-											<button class="btn btn-danger" type="button" onclick="javascript:userDelete(${user.id})">删除</button>
+
+											onclick="return modifyUser(<%=user.id %>,'<%=user.nickname %>','<%=user.truename %>','','<%=user.sex %>','<%=user.face %>','<%=user.email %>','<%=user.mobile %>')">修改</button>&nbsp;&nbsp;
+											<button class="btn btn-danger" type="button" onclick="javascript:userDelete(<%=user.id %>)">删除</button>
 										</td>
 									</tr>
-								</c:forEach>
+								<%}
+                                %>
 							</tbody>
 						</table>
 					</div>
 				</div>
 				<div class="pagination alternate">
-					<ul class="clearfix">${pageCode }
+					<ul class="clearfix">
+                        <%=pageCode %>
 					</ul>
 				</div>
 
@@ -269,7 +296,7 @@
 								<label class="control-label" for="password">登录密码：</label>
 							</td>
 							<td>
-								<input id="password" type="text" name="user.password" placeholder="导入数据失败！">
+								<input id="password" type="password" name="user.password">
 							</td>
 						</tr>
 						<tr>
@@ -290,7 +317,7 @@
 						</tr>
 						<tr>
 							<td>
-								<label class="control-label" for="email">性别：</label>
+								<label class="control-label" for="email">邮箱：</label>
 							</td>
 							<td>
 								<input id="email" type="text" name="user.email" placeholder="导入数据失败！">

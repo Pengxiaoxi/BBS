@@ -80,9 +80,9 @@ D:\我的文档\15软工Asp.net\Example\BBS-px1\WebApp\bin\Util.pdb
 D:\我的文档\15软工Asp.net\Example\BBS-px1\WebApp\obj\Debug\WebApp.csprojResolveAssemblyReference.cache
 D:\我的文档\15软工Asp.net\Example\BBS-px1\WebApp\obj\Debug\WebApp.dll
 D:\我的文档\15软工Asp.net\Example\BBS-px1\WebApp\obj\Debug\WebApp.pdb
+D:\我的文档\15软工Asp.net\BBS-px\WebApp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 D:\我的文档\15软工Asp.net\BBS-px\WebApp\bin\roslyn\csc.exe
 D:\我的文档\15软工Asp.net\BBS-px\WebApp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-D:\我的文档\15软工Asp.net\BBS-px\WebApp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 D:\我的文档\15软工Asp.net\BBS-px\WebApp\bin\roslyn\Microsoft.CodeAnalysis.dll
 D:\我的文档\15软工Asp.net\BBS-px\WebApp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
 D:\我的文档\15软工Asp.net\BBS-px\WebApp\bin\roslyn\Microsoft.CSharp.Core.targets

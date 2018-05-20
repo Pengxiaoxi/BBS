@@ -22,7 +22,7 @@ namespace WebApp.topic
             //先删除回帖
             ReplyService replyService = new ReplyService();
 
-            bool r = replyService.Delete(topicId);
+            bool r = replyService.DeleteByTid(topicId);
 
             //删除主贴
             TopicService topicService = new TopicService();

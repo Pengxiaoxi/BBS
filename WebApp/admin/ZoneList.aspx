@@ -108,7 +108,7 @@ function resetValue() {
 					<span>系统管理</span> <span class="label">3</span></a>
 				<ul>
 					<li><a href="#">修改密码</a></li>
-					<li><a href="#">安全退出</a></li>
+					<li><a href="/admin/AdminLoginOut.ashx">安全退出</a></li>
 					<li><a href="#">刷新系统缓存</a></li>
 				</ul></li>
 		</ul>

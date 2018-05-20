@@ -140,10 +140,67 @@ namespace bbs.DAL
 				return false;
 			}
 		}
-		/// <summary>
-		/// 删除一条数据
+
+        /// <summary>
+		/// 通过外键帖子Id删除回帖
 		/// </summary>
-		public bool Delete(int t_t_id,int t_u_id,int id)
+		public bool DeleteByTid(int id)
+        {
+
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("delete from t_reply ");
+            strSql.Append(" where t_t_id=@id");
+            SqlParameter[] parameters = {
+                    new SqlParameter("@id", SqlDbType.Int,4)
+            };
+            parameters[0].Value = id;
+
+            int rows = DbHelperSQL.ExecuteSql(strSql.ToString(), parameters);
+            if (rows > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        /// <summary>
+		/// 通过外键用户Id删除回帖
+		/// </summary>
+		public bool DeleteByUid(int id)
+        {
+
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("delete from t_reply ");
+            strSql.Append(" where t_u_id=@id");
+            SqlParameter[] parameters = {
+                    new SqlParameter("@id", SqlDbType.Int,4)
+            };
+            parameters[0].Value = id;
+
+            int rows = DbHelperSQL.ExecuteSql(strSql.ToString(), parameters);
+            if (rows > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+
+
+
+
+        /// <summary>
+        /// 删除一条数据
+        /// </summary>
+        public bool Delete(int t_t_id,int t_u_id,int id)
 		{
 			
 			StringBuilder strSql=new StringBuilder();

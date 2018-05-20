@@ -140,10 +140,32 @@ namespace bbs.BLL
 			
 			return dal.Delete(id);
 		}
-		/// <summary>
-		/// 删除一条数据
+
+        /// <summary>
+		/// 通过外键帖子Id删除回帖
 		/// </summary>
-		public bool Delete(int t_t_id,int t_u_id,int id)
+		public bool DeleteByTid(int id)
+        {
+
+            return dal.DeleteByTid(id);
+        }
+
+
+        /// <summary>
+        /// 通过外键用户Id删除回帖
+        /// </summary>
+        public bool DeleteByUid(int id)
+        {
+
+            return dal.DeleteByUid(id);
+        }
+
+
+
+        /// <summary>
+        /// 删除一条数据
+        /// </summary>
+        public bool Delete(int t_t_id,int t_u_id,int id)
 		{
 			
 			return dal.Delete(t_t_id,t_u_id,id);

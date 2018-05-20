@@ -43,8 +43,6 @@ namespace bbs.BLL
         //查找所有zone
         public List<Zone> FindAllZone(int pageNumber)
         {
-            int pageCount = 5;
-
             DataSet ds = this.GetListByPage("","id asc",(pageNumber-1)*pageCount+1,pageNumber*pageCount);
 
             List<Zone> zoneList = this.DataTableToList(ds.Tables[0]);
