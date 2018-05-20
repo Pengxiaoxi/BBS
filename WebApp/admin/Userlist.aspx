@@ -22,7 +22,7 @@
         $("#password").val(password);
         $("#sex").val(sex);
         //$("#face").attr("src", "${pageContext.request.contextPath}/" + face);
-        $("#face").attr("src", "${pageContext.request.contextPath}/" + face);
+        $("#face").attr("src", "/pageContext/" + face);
         $("#email").val(email);
         $("#mobile").val(mobile);
     }

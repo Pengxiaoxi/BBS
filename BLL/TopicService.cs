@@ -18,6 +18,8 @@ namespace bbs.BLL
         private readonly bbs.DAL.SectionDao sectionDao = new bbs.DAL.SectionDao();
         private readonly bbs.DAL.ZoneDao zoneDao = new bbs.DAL.ZoneDao();
 
+        public int pageSize = 5;
+
         public TopicService()
 		{}
         #region  BasicMethod
@@ -132,6 +134,17 @@ namespace bbs.BLL
         public int UnAnswerCount(int sectionId)
         {
             return dal.UnAnswerCount(sectionId);
+        }
+
+        //FindAllTopic
+        public List<Topic> FindAllTopic(int pageNumber)
+        {
+            DataSet ds = this.GetListByPage("", "", (pageNumber-1)* pageSize+1, pageNumber*pageSize);
+
+            List<Topic> topicList = this.DataTableToList(ds.Tables[0]);
+
+            return topicList;
+
         }
 
 

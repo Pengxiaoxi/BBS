@@ -11,7 +11,10 @@ namespace bbs.BLL
 	public partial class SectionService
 	{
 		private readonly bbs.DAL.SectionDao dal=new bbs.DAL.SectionDao();
-		public SectionService()
+
+        public int pageCount = 5;
+
+        public SectionService()
 		{}
         #region  BasicMethod
 
@@ -24,6 +27,16 @@ namespace bbs.BLL
 
         //    return SectionList;
         //}
+
+        //FindAllSection
+        public List<Section> FindAllSection(int pageNumber)
+        {
+            DataSet ds = this.GetListByPage("", "id asc", (pageNumber-1)*pageCount+1, pageNumber*pageCount);
+
+            List<Section> sectionList = this.DataTableToList(ds.Tables[0]);
+
+            return sectionList;
+        }
 
 
         /// <summary>

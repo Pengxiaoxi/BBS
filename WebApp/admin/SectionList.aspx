@@ -222,13 +222,15 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${sectionList }" var="section">
+								<%
+                                    foreach (bbs.Model.Section section in sectionList)
+                                    {%>
 									<tr>
 										<td><input type="checkbox" /></td>
-										<td style="text-align: center;vertical-align: middle;">${section.id }</td>
-										<td style="text-align: center;vertical-align: middle;">${section.name }</td>
+										<td style="text-align: center;vertical-align: middle;"><%=section.id %></td>
+										<td style="text-align: center;vertical-align: middle;"><%=section.name %></td>
 										<td style="text-align: center;vertical-align: middle;width: 110px;vertical-align: middle;">
-											<img style="width: 100px;" src='${pageContext.request.contextPath}/${section.logo }'></img>
+											<img style="width: 100px;" src='<%=section.logo %>'></img>
 										</td>
 										<td style="text-align: center;vertical-align: middle;">${section.zone.name }</td>
 										<td style="text-align: center;vertical-align: middle;">${section.master.nickName }</td>
@@ -237,13 +239,15 @@
 											</button>&nbsp;&nbsp;<button class="btn btn-danger" type="button" onclick="javascript:sectionDelete(${section.id})">删除</button>
 										</td>
 									</tr>
-								</c:forEach>
+								<%
+                                    }%>
 							</tbody>
 						</table>
 					</div>
 				</div>
 				<div class="pagination alternate">
-					<ul class="clearfix">${pageCode }
+					<ul class="clearfix">
+                        <%=pageCode %>
 					</ul>
 				</div>
 

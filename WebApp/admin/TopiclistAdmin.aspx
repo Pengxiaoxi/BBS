@@ -190,19 +190,23 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${TopicList }" var="topic">
+								<%
+                                    foreach (bbs.Model.Topic topic in topicList)
+                                    {%>
+                                    
 									<tr>
 										<td><input type="checkbox" /></td>
-										<td style="text-align: center;vertical-align: middle;">${topic.id }</td>
-										<td style="text-align: center;vertical-align: middle;">${topic.title }</td>
+										<td style="text-align: center;vertical-align: middle;"><%=topic.id %></td>
+										<td style="text-align: center;vertical-align: middle;"><%=topic.title %></td>
 										<td style="text-align: center;vertical-align: middle;width: 110px;vertical-align: middle;">
 											${topic.user.nickName }
-										</td>
+                                            
+										
 										<td style="text-align: center;vertical-align: middle;">${topic.section.name }</td>
-										<td style="text-align: center;vertical-align: middle;">${topic.publishTime }</td>
-										<td style="text-align: center;vertical-align: middle;">${topic.modifyTime }</td>
+										<td style="text-align: center;vertical-align: middle;"><%=topic.publishtime %></td>
+										<td style="text-align: center;vertical-align: middle;"><%=topic.modifytime %></td>
 										<td style="text-align: center;vertical-align: middle;">
-											<c:choose>
+											<%--<c:choose>
 												<c:when test="${topic.top==1 }"><font style="color: red;">置顶</font></c:when>
 												<c:otherwise>非置顶</c:otherwise>
 											</c:choose>
@@ -211,20 +215,47 @@
 											<c:choose>
 												<c:when test="${topic.good==1 }"><font style="color: red;">精华</font></c:when>
 												<c:otherwise>非精华</c:otherwise>
-											</c:choose>
+											</c:choose>--%>
+
+                                            <%
+                                                if (topic.top == "1")
+                                                {%>
+                                                    <font style = "color: red;" > 置顶 </ font >
+                                                <%}
+                                                else
+                                                {%>
+                                                    非置顶
+                                                <%}  
+                                            %>
+                                            </td>
+
+                                            <td style="text-align: center;vertical-align: middle;">
+                                            <%
+                                                if (topic.good == "1")
+                                                {%>
+                                                    <font style = "color: red;" > 精华 </ font >
+                                                <%}
+                                                else
+                                                {%>
+                                                    非精华
+                                                <%}  
+                                            %>
+
 										</td>
 										<td style="text-align: center;vertical-align: middle;">
 											<button class="btn btn-info" type="button" data-backdrop="static" data-toggle="modal" data-target="#dlg" onclick="return modifyTopic()">修改
-											</button>&nbsp;&nbsp;<button class="btn btn-danger" type="button" onclick="javascript:deleteTopic(${topic.id})">删除</button>
+											</button>&nbsp;&nbsp;<button class="btn btn-danger" type="button" onclick="javascript:deleteTopic(<%=topic.id %>)">删除</button>
 										</td>
 									</tr>
-								</c:forEach>
+								    <%}
+                                 %>
 							</tbody>
 						</table>
 					</div>
 				</div>
 				<div class="pagination alternate">
-					<ul class="clearfix">${pageCode }
+					<ul class="clearfix">
+                        <%=pageCode %>
 					</ul>
 				</div>
 			</div>
