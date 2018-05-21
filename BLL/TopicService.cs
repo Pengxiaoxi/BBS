@@ -190,17 +190,23 @@ namespace bbs.BLL
 		}
 
 
-        /// <summary>
-		/// 通过外键用户Id删除帖子
-		/// </summary>
+        
+		// 通过外键用户Id删除帖子
 		public bool DeleteByUid(int id)
         {
 
             return dal.DeleteByUid(id);
         }
 
+        // 通过外键板块Sid删除帖子
+        public bool DeleteBySid(int id)
+        {
 
-        
+            return dal.DeleteBySid(id);
+        }
+
+
+
         /// <summary>
         /// 删除一条数据
         /// </summary>

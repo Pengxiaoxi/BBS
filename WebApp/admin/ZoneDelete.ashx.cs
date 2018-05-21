@@ -16,19 +16,12 @@ namespace WebApp.admin
         {
             context.Response.ContentType = "text/plain";
 
-            int id = Int32.Parse(context.Request["zoneId"]);
+            int zoneid = Int32.Parse(context.Request["zoneId"]);
 
             ZoneService zoneService = new ZoneService();
 
-            bool b;
-            if (zoneService.Delete(id) == true)
-            {
-                b = true;
-            }
-            else
-            {
-                b = false;
-            }
+            bool b = zoneService.MyDelete(zoneid);
+            
             context.Response.Write(b);
             context.Response.End();
 

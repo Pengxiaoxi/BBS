@@ -79,10 +79,20 @@ namespace bbs.BLL
 			
 			return dal.Delete(id);
 		}
-		/// <summary>
-		/// 删除一条数据
-		/// </summary>
-		public bool Delete(int t_z_id,int t_u_id,int id)
+
+
+        // 通过外键t_z_id大板块id删除一条数据
+        public bool DeleteByZid(int id)
+        {
+
+            return dal.DeleteByZid(id);
+        }
+
+
+        /// <summary>
+        /// 删除一条数据
+        /// </summary>
+        public bool Delete(int t_z_id,int t_u_id,int id)
 		{
 			
 			return dal.Delete(t_z_id,t_u_id,id);

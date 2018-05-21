@@ -17,6 +17,10 @@ namespace bbs.BLL
         private readonly bbs.DAL.SectionDao sectionDao = new bbs.DAL.SectionDao();
         private readonly SectionService sectionService = new SectionService();
 
+        private readonly ZoneService zoneService = new ZoneService();    
+        private readonly TopicService topicService = new TopicService();
+        private readonly ReplyService replyService = new ReplyService();
+
         public int pageCount = 5;
 
         public ZoneService()
@@ -48,6 +52,27 @@ namespace bbs.BLL
             List<Zone> zoneList = this.DataTableToList(ds.Tables[0]);
 
             return zoneList;
+        }
+
+
+        //删除大板块及其下面所有小版块，帖子和回复
+        public bool MyDelete(int zoneId)
+        {
+            List<Section> sectionList = sectionService.GetModelList("t_z_id=" +zoneId);
+
+            foreach (Section section in sectionList)
+            {
+                List<Topic> topicList = topicService.GetModelList("t_s_id=" +section.id);
+
+                foreach (Topic topic in topicList)
+                {
+                    replyService.DeleteByTid(topic.id);  //删除回帖
+                }
+                topicService.DeleteBySid(section.id);    //删除主贴
+            }
+            sectionService.DeleteByZid(zoneId);          //删除小版块
+
+            return zoneService.Delete(zoneId);           //删除大板块
         }
 
 

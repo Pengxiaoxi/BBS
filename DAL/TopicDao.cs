@@ -178,6 +178,31 @@ namespace bbs.DAL
         }
 
 
+        /// <summary>
+		/// 通过外键板块id删除帖子
+		/// </summary>
+		public bool DeleteBySid(int id)
+        {
+
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("delete from t_topic ");
+            strSql.Append(" where t_s_id=@id");
+            SqlParameter[] parameters = {
+                    new SqlParameter("@id", SqlDbType.Int,4)
+            };
+            parameters[0].Value = id;
+
+            int rows = DbHelperSQL.ExecuteSql(strSql.ToString(), parameters);
+            if (rows > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
 
         /// <summary>

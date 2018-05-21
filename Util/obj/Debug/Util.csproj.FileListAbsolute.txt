@@ -7,3 +7,4 @@ D:\我的文档\15软工Asp.net\BBS-px\Util\bin\Debug\Util.dll
 D:\我的文档\15软工Asp.net\BBS-px\Util\bin\Debug\Util.pdb
 D:\我的文档\15软工Asp.net\BBS-px\Util\obj\Debug\Util.dll
 D:\我的文档\15软工Asp.net\BBS-px\Util\obj\Debug\Util.pdb
+D:\我的文档\15软工Asp.net\BBS-px\Util\obj\Debug\Util.csprojResolveAssemblyReference.cache
